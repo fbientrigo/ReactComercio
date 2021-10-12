@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "classnames": "^2.3.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.13",
     "react": "^16.13.1",
