@@ -1,0 +1,25 @@
+{
+  "short_name": "DwinaTech Shopping",
+  "name": "Create DwinaTech Shopping App",
+  "icons": [
+    {
+      "src": "DwinaTech-logo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "DwinaTech-logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "DwinaTech-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#c9d1d9",
+  "background_color": "#121212"
+}
