@@ -8,6 +8,8 @@ import {
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
+import Products from "../Products";
+import logo from "./logo.png";
 
 import "./style.css";
 
@@ -27,7 +29,7 @@ const NavBar = ({ basketItems, totalCost }) => {
               color="inherit"
             >
               <img
-                src="public\DwinaTech-logo.png"
+                src={logo}
                 alt="Logo TodoCelular"
                 height="25px"
                 className="logo"

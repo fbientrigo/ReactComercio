@@ -1,0 +1,158 @@
+/* Bootstrap Over-ride */
+@media (min-width: 1000px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+@media (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+    padding: 0 24px;
+  }
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown-menu {
+  top: 58px;
+  left: 0px;
+  padding: 10px;
+}
+
+.alert-primary {
+  background-color: #e4f1ff;
+}
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+html,
+body,
+p,
+div {
+  letter-spacing: -0.02px;
+  font-family: "Roboto", sans-serif;
+}
+.fs12 {
+  font-size: 12px;
+}
+.fs15 {
+  font-size: 0.9375rem;
+}
+
+.fw300 {
+  font-weight: 300;
+}
+.fw500 {
+  font-weight: 500;
+}
+
+/* Navigation-Main*/
+
+/* xs */
+.logo {
+  width: 49px;
+  height: auto;
+}
+/* sm */
+@media (min-width: 768px) {
+  .logo {
+    width: 49px;
+  }
+}
+/* md */
+@media (min-width: 992px) {
+  .logo {
+    width: 60px;
+  }
+}
+/* lg */
+@media (min-width: 1200px) {
+  .logo {
+    width: 70px;
+  }
+}
+
+/* Basket Menu */
+
+.basket-qty {
+  color: #fff;
+  background: #d42114;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 11px;
+  height: 15px;
+  width: 14px;
+  position: absolute;
+  box-sizing: content-box;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 1px;
+  right: 10px;
+}
+
+.basket-btn {
+  position: relative;
+}
+
+.basket-btn:hover,
+.basket-btn:focus,
+.basket-btn:active,
+.basket-btn.active {
+  color: #d42114;
+  transition-duration: 0.4s;
+  background-color: #fff;
+}
+
+/* Footer */
+
+.footer > div > div > ul > li {
+  padding-bottom: 8px;
+}
+
+.card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.hoverhover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+.hoverhover:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  transform: scale(1.35);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+}
+
+.whatsapp {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 10%;
+  right: 10%;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  z-index: 300;
+}
+
+.whatsapp-icon {
+  margin-top: 13px;
+}

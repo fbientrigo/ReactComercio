@@ -6,8 +6,10 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p>
-        Todos &copy; los derechos reservados a Todo Celular {fullYear}
-        Ubicado en Avenida Valparaiso #555
+        Todo Celular {fullYear} Ubicado en Viña del Mar, Avenida Valparaiso #555
+      </p>
+      <p>
+        -Contacto fbientrigo@gmail.com
       </p>
     </footer>
   );

@@ -8,16 +8,31 @@ import Products from "./components/Products";
 import Basket from "./components/Basket";
 import Checkout from "./components/Checkout";
 
+
 const App = () => {
   const [products, setProducts] = useState([]);
+  const [category, setCategory] = useState([]);
   const [basketData, setBasketData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
   const [orderError, setOrderError] = useState("");
 
   const fetchProducts = async () => {
-    const response = await commerce.products.list();
-    setProducts((response && response.data) || []);
+    //conseguimos los productos y categorias
+    const {data:responseProd} = await commerce.products.list();
+    const {data:responseCat} = await commerce.categories.list();
+    //debuggin
+    console.log(responseCat);
+    console.log(responseProd);
+
+    setProducts(responseProd);
+    setCategory(responseCat);
+
+    console.log("Observa como se actualizaron category y products con React Hook useState");
+    console.log(products);
+    console.log(category);
+    console.log("---------");
   };
+
 
   const fetchBasketData = async () => {
     const response = await commerce.cart.retrieve();
@@ -67,10 +82,22 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
+
+    useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchProducts();
     fetchBasketData();
-  }, []);
+
+    // console.log("Observa como se actualizaron category y products con React Hook useState");
+    // console.log(products);
+    // console.log(category);
+
+    //elimina el siguiente espacio en blanco
+    // eslint-disable-next-line
+
+  },[]); // aqui va }, []); que es el array de dependencias, React me recomendo quitarla debido a errores
+        //despues de un poco de research no encontre una solucion al problema
+        //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
   return (
     <Router>
@@ -86,7 +113,11 @@ const App = () => {
         />
         <Switch>
           <Route exact path="/">
-            <Products products={products} addProduct={addProduct} />
+
+            <div>
+
+            </div>
+            <Products products={products} addProduct={addProduct} category={category} />
           </Route>
           <Route exact path="/basket">
             <Basket

@@ -1,19 +1,19 @@
 {
-  "short_name": "DwinaTech Shopping",
-  "name": "Create DwinaTech Shopping App",
+  "short_name": "Todo Celular",
+  "name": "Todo Celular App de Compra",
   "icons": [
     {
-      "src": "DwinaTech-logo.png",
+      "src": "logo.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "DwinaTech-logo.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "DwinaTech-logo.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

@@ -20,8 +20,12 @@
   height: 100px;
 }
 
+.custom-navbar {
+  height: 60px;
+}
+
 .basket-wrapper .custom-basket {
-  font-size: 45px;
+  font-size: 35px;
   color: #bb86fc;
 }
 
