@@ -18,7 +18,8 @@ const App = () => {
 
   const fetchProducts = async () => {
     //conseguimos los productos y categorias
-    const {data:responseProd} = await commerce.products.list();
+    // por default el limite es 20
+    const {data:responseProd} = await commerce.products.list({limit:200});
     const {data:responseCat} = await commerce.categories.list();
     //debuggin
     console.log(responseCat);
