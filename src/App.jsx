@@ -8,6 +8,10 @@ import Products from "./components/Products";
 import Basket from "./components/Basket";
 import Checkout from "./components/Checkout";
 
+import {
+  Typography,
+} from "@material-ui/core";
+
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -85,18 +89,18 @@ const App = () => {
 
 
     useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    fetchProducts();
-    fetchBasketData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        fetchProducts();
+        fetchBasketData();
 
-    // console.log("Observa como se actualizaron category y products con React Hook useState");
-    // console.log(products);
-    // console.log(category);
+        // console.log("Observa como se actualizaron category y products con React Hook useState");
+        // console.log(products);
+        // console.log(category);
 
-    //elimina el siguiente espacio en blanco
-    // eslint-disable-next-line
-
-  },[]); // aqui va }, []); que es el array de dependencias, React me recomendo quitarla debido a errores
+        //elimina el siguiente espacio en blanco
+        // eslint-disable-next-line
+    
+        },[]); // aqui va }, []); que es el array de dependencias, React me recomendo quitarla debido a errores
         //despues de un poco de research no encontre una solucion al problema
         //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
 
@@ -109,33 +113,30 @@ const App = () => {
           totalCost={
             (basketData.subtotal &&
               basketData.subtotal.formatted_with_symbol) ||
-            "00.00"
+            "00"
           }
         />
         <Switch>
-          <Route exact path="/">
+            <Route exact path="/">
+                <div> </div>
+                <Products products={products} addProduct={addProduct} category={category} />
+            </Route>
 
-            <div>
+            <Route exact path="/basket">
+                <Basket basketData={basketData} updateProduct={updateProduct} handleEmptyBasket={handleEmptyBasket} RemoveItemFromBasket={RemoveItemFromBasket} />
+            </Route>
 
-            </div>
-            <Products products={products} addProduct={addProduct} category={category} />
-          </Route>
-          <Route exact path="/basket">
-            <Basket
-              basketData={basketData}
-              updateProduct={updateProduct}
-              handleEmptyBasket={handleEmptyBasket}
-              RemoveItemFromBasket={RemoveItemFromBasket}
-            />
-          </Route>
-          <Route exact path="/checkout">
-            <Checkout
-              orderInfo={orderInfo}
-              orderError={orderError}
-              basketData={basketData}
-              handleCheckout={handleCheckout}
-            />
-          </Route>
+            <Route exact path="/checkout">
+                <Checkout orderInfo={orderInfo} orderError={orderError} basketData={basketData} handleCheckout={handleCheckout} />
+            </Route>
+
+            <Route exact path="/servicios">
+                <Typography >
+                    Serivicios
+                </Typography>
+            </Route>
+
+
         </Switch>
         <Footer />
       </div>

@@ -10,10 +10,10 @@ const Banner = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
             <Typography className="title" variant="h1">
-              Basket is empty press Shopping for adding new products
+              El Carrito esta vacio, comienza nuestra tu historia con nuevos productos :)
             </Typography>
             <Button className="shopping-button" component={Link} to="/">
-              Shopping
+              Venta
             </Button>
           </Grid>
           <Grid className="brand" item xs={12} sm={6}>
