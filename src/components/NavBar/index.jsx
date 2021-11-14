@@ -26,7 +26,7 @@ const NavBar = ({ basketItems, totalCost }) => {
               <img src={logo} alt="Logo TodoCelular" height="25px" className="logo" />
             </Typography>
 
-            <IconButton Component={Link} to="/servicios" variant="h6" className="servicios-navbar">
+            <IconButton component={Link} to="/servicios" aria-label="servicios entregados" variant="h6" className="servicios-navbar">
                 <FaTools size={55} color="#03dac5" />
             </IconButton>
 

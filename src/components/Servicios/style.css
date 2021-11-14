@@ -1,3 +1,23 @@
 .white {
     color: #fff;
+    text-align: center;
+}
+
+.serviciosdiv {
+/*    background-image: url("https://images.unsplash.com/photo-1574610758891-5b809b6e6e2e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmlnaHQlMjBtb3VudGFpbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"); */
+    height: 720px;
+    background-image: url("./fondo.png");
+    background-size: cover;
+
+}
+.cartaglass {
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/*El tamaño de los cuadros, un valor del 100% provocara que tengas espacios sin fondo*/
+.gridpadre{
+    height: 90%;
+
 }
