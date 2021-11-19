@@ -27,7 +27,7 @@ const NavBar = ({ basketItems, totalCost }) => {
             </Typography>
 
             <IconButton component={Link} to="/servicios" aria-label="servicios entregados" variant="h6" className="servicios-navbar">
-                <FaTools size={55} color="#03dac5" />
+                <FaTools size={40} color="#03dac5" className="servicios"/>
             </IconButton>
 
             {location.pathname === "/basket" ? (

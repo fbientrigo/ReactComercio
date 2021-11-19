@@ -4,12 +4,11 @@
 }
 
 .serviciosdiv {
-/*    background-image: url("https://images.unsplash.com/photo-1574610758891-5b809b6e6e2e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bmlnaHQlMjBtb3VudGFpbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"); */
-    height: 720px;
+    height: 100%;
     background-image: url("./fondo.png");
     background-size: cover;
-
 }
+
 .cartaglass {
     background-color: #ffffff10;
     backdrop-filter: blur(12px);
@@ -19,5 +18,19 @@
 /*El tamaño de los cuadros, un valor del 100% provocara que tengas espacios sin fondo*/
 .gridpadre{
     height: 90%;
+}
 
+.imagenvidrios{
+    width: 90%;
+}
+
+.descripcion {
+    font-size: 1rem;
+}
+
+.precio {
+    color:  #03dac5;
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
 }

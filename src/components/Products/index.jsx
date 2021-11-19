@@ -35,6 +35,8 @@ const Products = ({ products, addProduct, category }) => {
 
     const classes = useStyles();
 
+    // la pagina se carga 2 veces, la 1era no contiene datos ni categorias ya que es en esa carga cuando las pide
+    // las siguientes lineas evitan que se muestre la pagina si algo no ha cargado
     if (!products.length) return <Spinner />;
     if (!category.length) return <Spinner />;
 

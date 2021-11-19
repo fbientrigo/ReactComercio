@@ -1,6 +1,8 @@
 import { Grid, Container, Typography, Card, CardActions, CardContent, AppBar } from "@material-ui/core";
 import "./style.css";
 
+import imgVidrio from './vidriotemplado.png';
+import imgHidrogel from './hidrogel.png';
 
 const Servicios = () => {
     /* Descripcion del componente:
@@ -16,12 +18,14 @@ const Servicios = () => {
                 <Grid item xs={4} className="cartaglass">
                     <Typography variant="h2">Vidrios 5D</Typography>
                     <Typography variant="p">Vidrio Templado</Typography>
-                    <ul>
+                    <img src={imgVidrio} alt="Vidrio Templado" className="imagenvidrios"/>
+                    <ul className="descripcion">
                         <li>Economico</li>
                         <li>Instalacion Rapida</li>
-                        <li>Grosor MAximo para Proteccion</li>
-                        <li>Precio entre $3000 y $5000</li>
+                        <li>Grosor Maximo para Proteccion</li>
+                        <li>En la tienda cortado a medida para cada modelo</li>
                     </ul>
+                    <p className="precio">$3000 - $5000</p>
                 </Grid>
 
                 <Grid item xs={1}> </Grid>
@@ -29,15 +33,16 @@ const Servicios = () => {
                 <Grid item xs={4} className="cartaglass">
                     <Typography variant="h2">Hidrogel</Typography>
                     <Typography variant="p">Lamina de Hidrogel</Typography>
-                    <ul>
+                    <img src={imgHidrogel} alt="Hidrogel" className="imagenvidrios"/>
+                    <ul className="descripcion">
                         <li>Acabado Premium</li>
                         <li>Flexible por tanto se adapta a cualquier patalla</li>
                         <li>Nano-Tecnologia de Absorcion de Golpes, permite regenerarse luego del daño</li>
                         <li>Facil de retirar y reemplazar</li>
                         <li>Grosor minimo, no interfiere con el lector de huellas</li>
                         <li>Puede usarse en la parte frontal como trasera del movil</li>
-                        <li>$7500</li>
                     </ul>
+                    <p className="precio">$7500</p>
                 </Grid>
                 <Grid item xs={2}> </Grid>
             </Grid>

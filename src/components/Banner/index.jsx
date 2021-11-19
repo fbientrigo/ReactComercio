@@ -21,7 +21,7 @@ const Banner = () => {
 							Constantemente creciendo y actualizando; encuentranos en Viña del Mar, Calle Valparaiso 555
 						</Typography>
 						<br/>
-            <Button className="shopping-button" href="https://g.page/Todocelular555?share">
+            <Button className="shopping-button" href="https://g.page/Todocelular555?share"  target="_blank" rel="noopener noreferrer">
               Google Maps
             </Button>
           </Grid>
