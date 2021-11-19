@@ -1,0 +1,49 @@
+.reel {
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 600px;
+    height: 600px;
+}
+
+.right-arrow {
+    color: #03dac5;
+    position: absolute;
+    right: 10px;
+    top: 15%;
+    font-size: 3rem;
+    z-index:10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.right-arrow:hover{
+    color: #fff;
+    transition-duration: 1s ease;
+}
+
+.left-arrow {
+    opacity: 0;
+    position: absolute;
+    top: 5%;
+    left: 10px;
+    font-size: 3rem;
+    z-index:10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+
+.slide-active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}

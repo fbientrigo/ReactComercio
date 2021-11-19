@@ -5,6 +5,14 @@
 .MuiAppBar-colorPrimary.custom-navbar > div > div {
   padding: 0;
 }
+
+.servicios {
+  position: relative;
+  right: 10px;
+  color: #03dac5;
+  top: -17px;
+}
+
 .basket-wrapper {
   flex-grow: 1;
   justify-content: flex-end;
@@ -25,6 +33,8 @@
 }
 
 .basket-wrapper .custom-basket {
+  position: relative;
+  top: -20px;
   font-size: 35px;
   color: #bb86fc;
 }

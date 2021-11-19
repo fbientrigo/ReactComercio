@@ -10,6 +10,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 import Products from "../Products";
 import logo from "./logo.png";
+import {FaTools} from "react-icons/fa";
 
 import "./style.css";
 
@@ -21,20 +22,14 @@ const NavBar = ({ basketItems, totalCost }) => {
       <AppBar position="fixed" className="custom-navbar">
         <Container>
           <Toolbar>
-            <Typography
-              component={Link}
-              to="/"
-              variant="h6"
-              className="custom-title"
-              color="inherit"
-            >
-              <img
-                src={logo}
-                alt="Logo TodoCelular"
-                height="25px"
-                className="logo"
-              />
+            <Typography component={Link} to="/" variant="h6" className="custom-title" color="inherit" >
+              <img src={logo} alt="Logo TodoCelular" height="25px" className="logo" />
             </Typography>
+
+            <IconButton component={Link} to="/servicios" aria-label="servicios entregados" variant="h6" className="servicios-navbar">
+                <FaTools size={40} color="#03dac5" className="servicios"/>
+            </IconButton>
+
             {location.pathname === "/basket" ? (
               <div className="basket-wrapper">
                 <h2>

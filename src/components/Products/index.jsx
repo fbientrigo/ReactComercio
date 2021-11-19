@@ -35,22 +35,24 @@ const Products = ({ products, addProduct, category }) => {
 
     const classes = useStyles();
 
+    // la pagina se carga 2 veces, la 1era no contiene datos ni categorias ya que es en esa carga cuando las pide
+    // las siguientes lineas evitan que se muestre la pagina si algo no ha cargado
     if (!products.length) return <Spinner />;
     if (!category.length) return <Spinner />;
 
-    console.log("Dentro de componente Products;");
-    console.log("Categoria ingresada en Products");
-    console.log(category);
+    //console.log("Dentro de componente Products;");
+    //console.log("Categoria ingresada en Products");
+    //console.log(category);
 
     //ahora mismo esta entrando la lista completa de categorias
-    console.log("Comenzanod a filtrar productos, estado previo:");
-    console.log(products);
+    //console.log("Comenzanod a filtrar productos, estado previo:");
+    //console.log(products);
 
     let productsF = products;
 
     if (categoriaActual === '') {
-      console.log("Ah Ocurrido el 612!!");
-      console.log("Significa que nos encontramos en la primera ejecucion del programa");
+      //console.log("Ah Ocurrido el 612!!");
+      //console.log("Significa que nos encontramos en la primera ejecucion del programa");
       productsF = products;
     } else {
       console.log("612 Not Ocurring; se ha realizado un cambio en categoriaActual");
@@ -63,20 +65,20 @@ const Products = ({ products, addProduct, category }) => {
         ));
     }
     
-    console.log("Estado despues");
-    console.log(productsF);
+    //console.log("Estado despues");
+    //console.log(productsF);
 
     const handleChage = (e) => {
-      console.log("Cambiando de Categoria");
-      console.log(categoriaActual);
+      //console.log("Cambiando de Categoria");
+      //console.log(categoriaActual);
 
       setCategoriaActual(e.target.value);
 
-      console.log("Cambiando a:");
-      console.log(categoriaActual);
+      //console.log("Cambiando a:");
+      //console.log(categoriaActual);
     };
 
-    console.log("saliendo de componente Products;");
+    //console.log("saliendo de componente Products;");
 
     return (
       <div>

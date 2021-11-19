@@ -10,13 +10,20 @@ import {
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
-import { renderRelatedComponent } from "./helpers";
+//para contacto por mail
+import emailjs from "emailjs-com";
 import "./style.css";
 
-const steps = ["order-address", "order-details", "order-payment"];
+/*          Componente Checkout
+    Se opta por una forma hibrida de automatizacion, debido a la inestabilidad de BSale
+    Esta forma aumenta la seguridad y permite que un vendedor cierre la venta
+    Forma -> Vendedor -> Confirmacion y Forma de Pago
 
-const convertObjectToArray = (countries) =>
-  Object.entries(countries || {}).map(([code, name]) => ({ code, name }));
+
+*/
+
+
+const steps = ["order-address", "order-details", "order-payment"];
 
 const usePreviousState = (value) => {
   const ref = useRef();
@@ -26,223 +33,161 @@ const usePreviousState = (value) => {
   return ref.current;
 };
 
-const Checkout = ({ basketData, orderInfo, orderError, handleCheckout }) => {
-  const [user, setUser] = useState({
-    city: "",
-    email: "",
-    address: "",
-    postCode: "",
-    lastName: "",
-    firstName: "",
-    shippingOption: {},
-    shippingOptions: [],
-    shippingCountry: {},
-    shippingCountries: [],
-    shippingSubdivision: {},
-    shippingSubdivisions: [],
-  });
-  const [bookingStep, setBookingStep] = useState("order-address");
-  const [checkoutData, setCheckoutData] = useState("");
+const Checkout = ({ basketData, orderInfo, orderError, handleCheckout, numeroVisitante, totalCost }) => {
+    const [user, setUser] = useState({
+        ciudad: "",
+        email: "",
+        direccion: "",
+        lastName: "",
+        firstName: "",
+        shippingOption: {},
+        shippingOptions: [],
+    });
 
-  const previousShippingCountry = usePreviousState(user.shippingCountry);
-  const previousShippingSubdivision = usePreviousState(
-    user.shippingSubdivision
-  );
+    const [bookingStep, setBookingStep] = useState("order-address");
+    //checkoutData contiene:
+    const [checkoutData, setCheckoutData] = useState("");
+    const [subtotal, setSubtotal] = useState(0);
 
-  const history = useHistory();
+    console.log("El checoutData es:");
+    console.log(checkoutData);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setBookingStep("order-details");
-  };
+    const history = useHistory();
 
-  const handleNextStep = (e, step) => {
-    e.preventDefault();
-    setBookingStep(step);
-  };
-
-  const handleBackStep = (e, step) => {
-    e.preventDefault();
-    setBookingStep(step);
-  };
-
-  const handleChange = (e) => {
+    const handleChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-  };
+    };
 
-  const handleSelectChange = (e, state) => {
-    const { name, value } = e.target;
-    if (state === "shippingOptions") {
-      setUser({
-        ...user,
-        [name]: {
-          id: value,
-        },
-      });
-    } else {
-      setUser({
-        ...user,
-        [name]: {
-          name: user[state].find((country) => country.code === value).name,
-          code: value,
-        },
-      });
+    //Fecha
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = dd + '-' + mm + '-' + yyyy;
+        console.log("Fecha de Hoy es");
+        console.log("El Ticket ID es la Fecha con el id del visitante adelante");
+        console.log(numeroVisitante);
+    let ticketid = numeroVisitante + "-" + today;
+    console.log(ticketid)
+    
+    //Enviar el Mail
+    function sendEmail(e) {
+        e.preventDefault();
+        console.log("Dentro del email tenemos:");
+        console.log(e);
+
+        //la estoy construyendo a mi conveniencia
+        // ToDo
+        // [] Agregar el userID al .env
+        emailjs.sendForm('gmail', 'ticket', e.target, 'user_n6ZOPkoUzAa0g3anpbeRJ')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+            // e.target.reset(); //una vez enviada se resetea
     }
-  };
 
-  useEffect(() => {
-    if (basketData.id) {
-      const generateToken = async () => {
-        try {
-          const response = await commerce.checkout.generateToken(
-            basketData.id,
-            {
-              type: "cart",
+    useEffect(() => {
+        if (basketData.id) {
+        const generateToken = async () => {
+            try {
+            const response = await commerce.checkout.generateToken(
+                basketData.id,
+                {
+                type: "cart",
+                }
+            );
+            setCheckoutData(response);
+            // setSubtotal(response.subtotal.raw);
+            // console.log("El subtotal --------");
+            // console.log(subtotal);
+            //debug
+            console.log("Data de Respuesta: --------");
+            console.log(response);
+            } catch (error) {
+            console.error("Checkout error: ", error);
             }
-          );
-          setCheckoutData(response);
-        } catch (error) {
-          console.error("Checkout error: ", error);
+        };
+        generateToken();
         }
-      };
-      generateToken();
+
+
+
+    }, [basketData, history]);
+
+/* To Do:
+    [] response.products contiene los productos necesarios
+    [] implementar el envio mediante Mail
+    [] enviar por mail o otra cosa la lista de productos junto a las imagenes de estos
+*/
+
+//        <h2>Esta parte esta en construccion para tu seguridad, tomale foto a tus productos y envialos a wsp meintras</h2>
+
+    console.log("basketData que es lo mas importante");
+    console.log(basketData);
+
+    //seccion que crea el mensaje a enviar
+    let mensaje = [];
+    if (checkoutData.products && basketData) {
+        mensaje.push("Subtotal:  " + "$" +basketData.subtotal.raw); 
+        mensaje.push("<br>");
+        mensaje.push("Productos: ");
+        mensaje.push("<br>");
+        mensaje.push("<ul>");
+        checkoutData.products.map((product) => {
+            mensaje.push("<li>");
+            mensaje.push(product.name);
+            mensaje.push("sku: " + product.sku);
+            mensaje.push("$"+product.price.raw);
+            mensaje.push("<br>");
+            mensaje.push("-----")
+            mensaje.push("</li>");
+        });
+        mensaje.push("</ul>");
+    // let mensajeString = mensaje.join('\r\n');
     }
-  }, [basketData, history]);
+    let mensajeString = mensaje.join('\r\n');
+    //ticketid, nombre, email, mensajed
 
-  useEffect(() => {
-    const fetchShippingCountries = async () => {
-      const { countries } = await commerce.services.localeListShippingCountries(
-        checkoutData.id
-      );
-      const FormattedCountries = convertObjectToArray(countries);
-      setUser({
-        ...user,
-        shippingCountries: FormattedCountries,
-        shippingCountry: FormattedCountries[FormattedCountries.length - 1],
-      });
-    };
-    if (!user.shippingCountries.length && checkoutData.id) {
-      fetchShippingCountries();
-    }
-  }, [user, checkoutData]);
 
-  useEffect(() => {
-    const fetchSubdivisions = async (countryCode) => {
-      const { subdivisions } = await commerce.services.localeListSubdivisions(
-        countryCode
-      );
-
-      const shippingSubdivisions = convertObjectToArray(subdivisions);
-      setUser({
-        ...user,
-        shippingSubdivisions,
-        shippingSubdivision: shippingSubdivisions[0],
-      });
-    };
-
-    if (
-      (user.shippingCountry.code && !user.shippingSubdivisions.length) ||
-      (previousShippingCountry &&
-        previousShippingCountry.code !== user.shippingCountry.code)
-    )
-      fetchSubdivisions(user.shippingCountry.code);
-  }, [user, previousShippingCountry]);
-
-  useEffect(() => {
-    const fetchShippingOptions = async (
-      checkoutDataId,
-      country,
-      stateProvince = null
-    ) => {
-      const options = await commerce.checkout.getShippingOptions(
-        checkoutDataId,
-        {
-          country,
-          region: stateProvince,
-        }
-      );
-
-      setUser({
-        ...user,
-        shippingOptions: options,
-        shippingOption: { id: options[0].id },
-      });
-    };
-
-    if (
-      (user.shippingSubdivision.code && !user.shippingOptions.length) ||
-      (previousShippingSubdivision &&
-        previousShippingSubdivision.code !== user.shippingSubdivision.code)
-    )
-      fetchShippingOptions(
-        checkoutData.id,
-        user.shippingCountry.code,
-        user.shippingSubdivision.code
-      );
-  }, [
-    user,
-    checkoutData.id,
-    user.shippingCountry.code,
-    user.shippingSubdivision,
-    previousShippingSubdivision,
-  ]);
-
-  if (
-    !user.shippingSubdivisions.length ||
-    !user.shippingCountries.length ||
-    !user.shippingOptions.length ||
-    !checkoutData.live
-  ) {
     return (
       <div className="checkout">
+        <Typography className="subtotal" variant="h3">{totalCost}</Typography>
         <Container>
-          <Paper className="paper" elevation={3}>
-            <div className="products-spinner">
-              <CircularProgress />
+        <Paper className="paper" elevation={3}>
+        <div className="container">
+        <form onSubmit={sendEmail}>
+        <div className="row pt-5 mx-auto">
+            <div className="col-8 form-group mx-auto">
+                <input type="text" className="form-control" placeholder="Nombre" name="nombre"/>
             </div>
-          </Paper>
+
+            <div className="col-8 form-group pt-2 mx-auto">
+                <input type="email" className="form-control" placeholder="Email" name="email"/>
+            </div>
+
+            <div className="col-8">
+                <input type="text" className="form-control" placeholder="Direccion" name="direccion"/>
+            </div>
+
+            <div className="col-8 pt-3 mx-auto">
+                <input type="submit"  className="botonSubmit" value="Send Message"></input>
+            </div>  
+
+            <input type="hidden" cols="30" rows="8" name="mensaje" value={mensajeString}/>
+            <input type="hidden" name="ticketid" value={ticketid}/>
+
+        </div>
+        </form>
+        </div>
+        </Paper>
         </Container>
       </div>
     );
   }
 
-  return (
-    <div className="checkout">
-      <Container>
-        <Paper className="paper" elevation={3}>
-          <Typography align="center" variant="h5" gutterBottom>
-            Checkout
-          </Typography>
-          {bookingStep !== "confirmation" && (
-            <Stepper
-              className="stepper"
-              activeStep={steps.indexOf(bookingStep)}
-            >
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          )}
-          {renderRelatedComponent({
-            user,
-            orderInfo,
-            orderError,
-            bookingStep,
-            handleChange,
-            handleSubmit,
-            checkoutData,
-            handleBackStep,
-            handleNextStep,
-            handleCheckout,
-            handleSelectChange,
-          })}
-        </Paper>
-      </Container>
-    </div>
-  );
-};
 
 export default Checkout;

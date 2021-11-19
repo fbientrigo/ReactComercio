@@ -1,0 +1,2 @@
+[] con photoshop quitar el fondo
+	[] quedar en un tamaño default de imagen, de manera que sean identicas

@@ -1,0 +1,36 @@
+.white {
+    color: #fff;
+    text-align: center;
+}
+
+.serviciosdiv {
+    height: 100%;
+    background-image: url("./fondo.png");
+    background-size: cover;
+}
+
+.cartaglass {
+    background-color: #ffffff10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/*El tamaño de los cuadros, un valor del 100% provocara que tengas espacios sin fondo*/
+.gridpadre{
+    height: 90%;
+}
+
+.imagenvidrios{
+    width: 90%;
+}
+
+.descripcion {
+    font-size: 1rem;
+}
+
+.precio {
+    color:  #03dac5;
+    width: 100%;
+    text-align: center;
+    font-size: 1.8rem;
+}

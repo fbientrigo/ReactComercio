@@ -46,3 +46,35 @@
   color: #000000;
   background-color: #03dac5;
 }
+
+.fondo {
+    height: 100%;
+    background-image: url("./fondo.png");
+    background-size: cover;
+}
+
+.subtotal {
+    text-align: center;
+    color: #03dac5;
+}
+
+input {
+  width: 100%;
+  padding:10px;
+  margin:10px 0;
+  border:0;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;
+}
+
+/*Hacer el boton bonito y centrado*/
+.botonSubmit {
+  /* usual styles */
+  padding:10px;
+  border:none;
+  color:#fff;
+  font-weight:600;
+  border-radius:5px;
+  width:100%;
+  background-color: #037c70;
+}
