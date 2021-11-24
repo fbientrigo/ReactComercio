@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/logo.png" />
@@ -16,38 +16,43 @@
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/estilos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <title>TodoCelular</title>
+
+    <meta name="facebook-domain-verification" content="jmsexrcnc0ap600b6we2cz3u9ywwui"/>
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    //Aqui es donde comenzamos a hacer tracking
+        fbq('init', '602904561010862');
+        fbq('track', 'PageView');
+
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=602904561010862&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Debes Activar JavaScript para ver esta Pagina.</noscript>
     <div id="root"></div>
 
-<!-- Esta seccion incluye un Boton de Whatsapp a +56935171107 -->
-<style>
-      .whatsapp {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 6%;
-        right: 3%;
-        background-color: #25d366;
-        color: #fff;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        z-index: 300;
-      }
+    <!-- Esta seccion incluye un Boton de Whatsapp a +56935171107 -->
+    <a href="https://wa.me/+56935171107?text=Me%20gustaría%20saber%20el%20precio%20de%20un%20producto" class="botonFlotante whatsapp" target="_blank"><i class="fa fa-whatsapp"></i></a>
 
-      .whatsapp-icon {
-        margin-top: 13px;
-      }
-
-  </style>
-    <a href="https://wa.me/+56935171107?text=Me%20gustaría%20saber%20el%20precio%20de%20un%20producto" class="whatsapp" target="_blank"><i class="fa fa-whatsapp whatsapp-icon"></i></a>
-
+    <button onclick="topFunction()" id="myBtn" class="botonFlotante" title="Go to top"><i class="fa fa-arrow-up"></i></button>
 
 
 
   </body>
+    <script src="%PUBLIC_URL%/js/codigo.js"></script>
 </html>

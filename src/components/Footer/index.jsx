@@ -8,8 +8,9 @@ const Footer = () => {
       <p>
         Todo Celular {fullYear} Ubicado en Viña del Mar, Avenida Valparaiso #555
       </p>
+      <div className="breakline"></div>
       <p>
-        -Contacto fbientrigo@gmail.com
+        - Contacto fbientrigo@gmail.com
       </p>
     </footer>
   );

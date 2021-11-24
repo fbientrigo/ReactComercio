@@ -100,12 +100,6 @@
   padding: 5px 15px;
 }
 
-@media (min-width: 960px) {
-  .MuiContainer-root.product-view {
-    height: 88vh;
-    margin: 40px 0 0;
-  }
-}
 
 .descripcion {
     padding: 10px;
@@ -113,15 +107,57 @@
     max-height: 40vh;
 }
 
-
 .fondo {
-    height: 100%;
     background-image: url("./fondo.png");
     background-size: cover;
 }
 
 .cartaglass {
-    background-color: #ffffff10;
+    padding-bottom: 100px;
+    color: #fff;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+
+.footer {
+    z-index: 500;
+    height: 100%;
+}
+
+@media screen and (max-width:800px) {
+
+  .image-wrapper img{
+     position: relative;
+     top: 100px;
+ }   
+
+ .botonplus{
+    width: 100%;
+ }
+
+ .botonminus{
+    width: 100%;
+ }
+
+ .text {
+     height: 100%;
+     padding-bottom: 100px;
+     text-align: center;
+     display: inline;
+ }
+
+ .cartaglass{
+ }
+
+ .footer{
+     opacity: 0;
+ }
+}
+
+@media (min-width: 960px) {
+  .MuiContainer-root.product-view {
+    height: 88vh;
+    margin: 40px 0 0;
+  }
 }

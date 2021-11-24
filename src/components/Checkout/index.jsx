@@ -1,18 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Step,
   Paper,
-  Stepper,
-  StepLabel,
   Container,
   Typography,
-  CircularProgress,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { commerce } from "../../lib/commerce";
 //para contacto por mail
 import emailjs from "emailjs-com";
 import "./style.css";
+import guia from "./guia.png";
 
 /*          Componente Checkout
     Se opta por una forma hibrida de automatizacion, debido a la inestabilidad de BSale
@@ -22,57 +19,32 @@ import "./style.css";
 
 */
 
+const Checkout = ({ basketData, numeroVisitante, totalCost }) => {
 
-const steps = ["order-address", "order-details", "order-payment"];
-
-const usePreviousState = (value) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
-
-const Checkout = ({ basketData, orderInfo, orderError, handleCheckout, numeroVisitante, totalCost }) => {
-    const [user, setUser] = useState({
-        ciudad: "",
-        email: "",
-        direccion: "",
-        lastName: "",
-        firstName: "",
-        shippingOption: {},
-        shippingOptions: [],
-    });
-
-    const [bookingStep, setBookingStep] = useState("order-address");
     //checkoutData contiene:
     const [checkoutData, setCheckoutData] = useState("");
-    const [subtotal, setSubtotal] = useState(0);
+    //Cuanto es lo que estamos ocbrando al cliente
+    const [pagar, setPagar] = useState(totalCost);
+    let descuento = 1.0; //porcentajes
 
-    console.log("El checoutData es:");
-    console.log(checkoutData);
-
-    const history = useHistory();
-
-    const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-    };
+    //console.log("El checkoutData es:");
+    //console.log(checkoutData);
 
     //Fecha
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
-        today = dd + '-' + mm + '-' + yyyy;
-        console.log("Fecha de Hoy es");
-        console.log("El Ticket ID es la Fecha con el id del visitante adelante");
-        console.log(numeroVisitante);
+    today = dd + '-' + mm + '-' + yyyy;
+    //console.log("Fecha de Hoy es");
+    //console.log("El Ticket ID es la Fecha con el id del visitante adelante");
+    //console.log(numeroVisitante);
     let ticketid = numeroVisitante + "-" + today;
-    console.log(ticketid)
+    //console.log(ticketid)
     
     //Enviar el Mail
+    /*La funcion se encarga de tomar todo lo de <from> y lanzarlo por la API de emails*/
     function sendEmail(e) {
         e.preventDefault();
         console.log("Dentro del email tenemos:");
@@ -100,39 +72,39 @@ const Checkout = ({ basketData, orderInfo, orderError, handleCheckout, numeroVis
                 type: "cart",
                 }
             );
-            setCheckoutData(response);
-            // setSubtotal(response.subtotal.raw);
-            // console.log("El subtotal --------");
-            // console.log(subtotal);
             //debug
-            console.log("Data de Respuesta: --------");
-            console.log(response);
+            //console.log("Data de Respuesta: --------");
+            setCheckoutData(response);
+            //Actualizamos cuanto Paga Dependiendo de condiciones
+            // react infinite loop warning 24 noviembre
+            // desde que agreguye este comportamiento tuve algunos infinitos, y luego dejaron de ocurrir
+           
+            //aplicamos el default de que usen el retiro en tienda
+           setPagar(basketData.subtotal.raw * 0.9);
+            //debug
+            //console.log("Data de Respuesta: --------");
+            //console.log(response);
             } catch (error) {
-            console.error("Checkout error: ", error);
+                //console.error("Checkout error: ", error);
             }
-        };
-        generateToken();
+            };
+            //para que es esto?
+            generateToken();
         }
+   // }, [basketData, history]); //elimine esta opcion el 24 de noviembre por renders infinitos
+   // los renders eran producidos por la linea setCheckoutData()
+    }, []);
 
-
-
-    }, [basketData, history]);
-
-/* To Do:
-    [] response.products contiene los productos necesarios
-    [] implementar el envio mediante Mail
-    [] enviar por mail o otra cosa la lista de productos junto a las imagenes de estos
-*/
-
-//        <h2>Esta parte esta en construccion para tu seguridad, tomale foto a tus productos y envialos a wsp meintras</h2>
-
-    console.log("basketData que es lo mas importante");
-    console.log(basketData);
+    //console.log("basketData que es lo mas importante");
+    //console.log(basketData);
 
     //seccion que crea el mensaje a enviar
+    /*El mensaje contiene todos los datos sobre el producto, y permite que sea leido en la tienda*/
     let mensaje = [];
     if (checkoutData.products && basketData) {
-        mensaje.push("Subtotal:  " + "$" +basketData.subtotal.raw); 
+        //Creamos el Email
+        mensaje.push("Subtotal:  "+"$"+basketData.subtotal.raw); 
+        mensaje.push("Aplicando Descuentos:  "+"$"+pagar); 
         mensaje.push("<br>");
         mensaje.push("Productos: ");
         mensaje.push("<br>");
@@ -147,15 +119,37 @@ const Checkout = ({ basketData, orderInfo, orderError, handleCheckout, numeroVis
             mensaje.push("</li>");
         });
         mensaje.push("</ul>");
+
     // let mensajeString = mensaje.join('\r\n');
     }
     let mensajeString = mensaje.join('\r\n');
-    //ticketid, nombre, email, mensajed
+    //ticketid, nombre, email, mensaje
 
+    // Controla el Cambio de Select, para retiro en tienda o domicilio
+    const cambioSelect = (e) => {
+        console.log("Ha ocurrido un Cambio en Select:");
+        let seleccion = e.nativeEvent.target.value;
+        //console.log(e.nativeEvent.target.value);
+        //Entrega a Domicilio
+        //Retiro en Tienda
+        if (seleccion === 'Entrega a Domicilio') {
+            descuento = 1.0;
+            console.log('Aplicando descuento ' + descuento);
+            setPagar(basketData.subtotal.raw * descuento);
+        }
+        else if (seleccion === 'Retiro en Tienda') {
+            descuento = 0.9;
+            console.log('Aplicando descuento ' + descuento);
+            setPagar(basketData.subtotal.raw * descuento);
+        }
+    }
+ 
 
     return (
       <div className="checkout">
-        <Typography className="subtotal" variant="h3">{totalCost}</Typography>
+        <img src={guia} alt="guia de compra" className="guia"/>
+
+        <Typography className="subtotal" variant="h3">$ {pagar}</Typography>
         <Container>
         <Paper className="paper" elevation={3}>
         <div className="container">
@@ -173,8 +167,14 @@ const Checkout = ({ basketData, orderInfo, orderError, handleCheckout, numeroVis
                 <input type="text" className="form-control" placeholder="Direccion" name="direccion"/>
             </div>
 
+
+            <select name="metodorecepcion" id="recepcion" className="selecciona" onChange={cambioSelect}>
+                <option value="Retiro en Tienda">Retiro en Tienda - Descuento 10%</option>
+                <option value="Entrega a Domicilio">Domicilio - Aplican costos extras</option>
+            </select>
+
             <div className="col-8 pt-3 mx-auto">
-                <input type="submit"  className="botonSubmit" value="Send Message"></input>
+                <input type="submit" className="botonSubmit" value="Send Message"></input>
             </div>  
 
             <input type="hidden" cols="30" rows="8" name="mensaje" value={mensajeString}/>

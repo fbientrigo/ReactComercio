@@ -1,6 +1,6 @@
 // Parte de React y el Funcionamiento de MAteriaul UI
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, HashRouter } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 // Apis usadas
 import { commerce } from "./lib/commerce";
@@ -14,9 +14,9 @@ import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView";
 import Servicios from "./components/Servicios";
 import Spinner from "./components/Spinner";
+import AfterFX from "./components/AfterFX";
 //esto es para enviar mails automaticos
 import{ init } from 'emailjs-com';
-import AfterFX from "./components/AfterFX";
 init("user_n6ZOPkoUzAa0g3anpbeRJ");
 
 const App = () => {
@@ -89,7 +89,7 @@ const App = () => {
     } catch (error) {
       setOrderError(
         (error.data && error.data.error && error.data.error.message) ||
-          "There is an error occurred"
+          "Un error acaba de ocurrir, considera contacto por WSP o el Email en el Pie de Pagina"
       );
     }
   };
@@ -124,8 +124,11 @@ const App = () => {
         },[]); // aqui va }, []); que es el array de dependencias, React me recomendo quitarla debido a errores
         //despues de un poco de research no encontre una solucion al problema
         //https://stackoverflow.com/questions/55840294/how-to-fix-missing-dependency-warning-when-using-useeffect-react-hook
+
+
+/* Return principal de la funcion */
   return (
-    <Router>
+    <HashRouter>
       <div>
         <CssBaseline />
         <NavBar
@@ -141,12 +144,12 @@ const App = () => {
                 <AfterFX/>
                 <div> </div>
                 <Products products={products} addProduct={addProduct} category={category} />
-        <Footer />
+                <Footer />
             </Route>
 
             <Route exact path="/basket">
                 <Basket basketData={basketData} updateProduct={updateProduct} handleEmptyBasket={handleEmptyBasket} RemoveItemFromBasket={RemoveItemFromBasket} />
-        <Footer />
+                <Footer />
             </Route>
 
             <Route exact path="/checkout">
@@ -164,13 +167,12 @@ const App = () => {
             </Route>
 
             <Route exact path="/product-view/:id">
-                <ProductView addProduct={addProduct} Spinner={Spinner} />
-            <Footer />
+                <ProductView addProduct={addProduct} Spinner={Spinner} Footer={Footer} />
             </Route>
 
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   );
 };
 

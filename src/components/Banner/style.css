@@ -54,3 +54,43 @@
     font-size: 65px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .afterfxseccion{
+    display: none;
+  }
+
+  .banner{
+      position: relative;
+      padding: 100px 0 0 0;
+      height: 1000px;
+  }
+
+  .title {
+    top: 100px;
+    padding: 20px 0px 0 0px;
+    text-align: center;
+  }
+
+  .abstract {
+      width: 100%;
+      text-align: center;
+  }
+
+  .shopping-button {
+      width: 100%;
+  }
+}
+
+@media screen and (max-width:800px) {
+  .title {
+    padding: 10px 0px 0 0px;
+
+  }
+  
+
+  
+  .afterfxseccion{
+    display: none;
+  }
+}

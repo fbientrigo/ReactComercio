@@ -67,7 +67,7 @@ const Products = ({ products, addProduct, category }) => {
     
     //console.log("Estado despues");
     //console.log(productsF);
-
+    // eslint-disable-next-line
     const handleChage = (e) => {
       //console.log("Cambiando de Categoria");
       //console.log(categoriaActual);
@@ -107,7 +107,7 @@ const Products = ({ products, addProduct, category }) => {
       <Container id="products">
         <Grid container spacing={4}>
           {productsF.map((product) => (
-            <Grid key={product.id} item xs={12} sm={6} md={4}>
+            <Grid key={product.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
               <Product product={product} addProduct={addProduct} />
             </Grid>
           ))}

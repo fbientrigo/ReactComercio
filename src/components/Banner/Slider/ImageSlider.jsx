@@ -1,7 +1,6 @@
 import "./style.css";
 import {SliderData} from "./SliderData";
 import React, {useState} from "react";
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from "react-icons/fa";
 import {FaPlayCircle} from "react-icons/fa";
 
 const ImageSlider = ({slides}) => {
@@ -16,12 +15,11 @@ const ImageSlider = ({slides}) => {
   const nextSlide = () => {
     //si es que estamos en la ultima imagen -> setCurrent(0)
     // si no es asi, osea False -> setCurrent(current + 1)
-    setCurrent(current == length - 1 ? 0: current + 1)
+    setCurrent(current === length - 1 ? 0: current + 1)
   }
 
   return (
     <section className="reel">
-      <FaArrowAltCircleLeft className="left-arrow"  />
       <FaPlayCircle className="right-arrow" onClick={nextSlide} />
       {SliderData.map( (slide, index) => {
           return(

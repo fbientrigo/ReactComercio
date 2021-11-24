@@ -1,4 +1,4 @@
-import { Grid, Container, Typography, Card, CardActions, CardContent, AppBar } from "@material-ui/core";
+import { Grid, Typography} from "@material-ui/core";
 import "./style.css";
 
 import imgVidrio from './vidriotemplado.png';

@@ -16,6 +16,7 @@
     right: 10px;
     top: 15%;
     font-size: 3rem;
+    opacity: 0.5;
     z-index:10;
     cursor: pointer;
     user-select: none;
@@ -23,6 +24,7 @@
 
 .right-arrow:hover{
     color: #fff;
+    opacity: 1;
     transition-duration: 1s ease;
 }
 
@@ -46,4 +48,42 @@
     opacity: 1;
     transition-duration: 1s;
     transform: scale(1.08);
+}
+
+@media screen and (max-width:600px) {
+    .reel{
+        height: 300px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .right-arrow {
+        font-size: 2.5rem;
+    }
+
+    .image {
+        padding: 10px;
+        height: 300px;
+    }
+    
+}
+
+@media screen and (max-width:800px) {
+    .reel{
+        height: 400px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .right-arrow {
+        font-size: 2.5rem;
+    }
+
+    .image {
+        padding: 10px;
+        height: 350px;
+    }
+    
 }
