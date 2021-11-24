@@ -40,7 +40,17 @@ const Products = ({ products, addProduct, category }) => {
     if (!products.length) return <Spinner />;
     if (!category.length) return <Spinner />;
 
-    //console.log("Dentro de componente Products;");
+
+    console.log("Dentro de componente Products;");
+    console.log(products);
+
+    // Crear un boton para esto
+    // uno verdecito color excel
+    console.log(products);
+    
+    
+
+
     //console.log("Categoria ingresada en Products");
     //console.log(category);
 
@@ -78,7 +88,26 @@ const Products = ({ products, addProduct, category }) => {
       //console.log(categoriaActual);
     };
 
-    //console.log("saliendo de componente Products;");
+    // eslint-disable-line prefer-template
+    let csv = "" 
+    if (products.length > 37) {
+    csv = "sep=; \n id; title ; description; availability; condition; price; link; image_link ; brand \n" ;
+        products.forEach( producto => ( 
+            csv +=  producto.sku + ";" 
+                + producto.name + ";" + "descripcion" + producto.name + ";" 
+                + "in stock" + ";" + "new" + ";" 
+                + producto.price.raw + ";" 
+                + "https://www.todocelularvina.cl/" +`soya` + "/product-view/"+ producto.id + ";"
+                + producto.image.url + ";" 
+                + "TodoCelular"
+                + "\n"
+        ));
+    
+        // console.log("csv");
+        // console.log(csv);
+    }
+
+ 
 
     return (
       <div>
@@ -103,7 +132,16 @@ const Products = ({ products, addProduct, category }) => {
 
       </FormControl>
 
-
+      <a 
+        href={'data:text/csv;charset=utf-8,' + encodeURI(csv)}
+        className="excel download" id="botondescarga"
+        target="_blank"
+        rel="noreferrer"
+        download="datos.csv"
+        >
+        Descarga Excel
+      </a>
+       
       <Container id="products">
         <Grid container spacing={4}>
           {productsF.map((product) => (
@@ -113,7 +151,8 @@ const Products = ({ products, addProduct, category }) => {
           ))}
         </Grid>
       </Container>
-    </div>
+
+        </div>
   );
 };
 
