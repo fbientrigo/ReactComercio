@@ -44,18 +44,40 @@
 
 
 
-.banner a.shopping-button {
-  color: #000000;
-  background-color: #03dac5;
+.shopping-button {
+    padding: 10px;
+    color: #000000;
+    background-color: #03dac5;
+    background: rgb(34,87,122);
+    background: linear-gradient(86deg, rgba(34,87,122,1) 0%, rgba(56,163,165,1) 32%, rgba(87,204,153,1) 60%, rgba(128,237,153,1) 100%);
+}
+
+.shopping-button + .shopping-button {
+    margin-left: 50px;
 }
 
 @media (min-width: 800px) {
   .banner .title {
-    font-size: 65px;
   }
+
+
+
 }
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 800px) {
+
+    .shopping-button + .shopping-button {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+    .shopping-button + .shopping-button {
+        margin-left: 0;
+    }
+
   .afterfxseccion{
     display: none;
   }
@@ -79,7 +101,9 @@
 
   .shopping-button {
       width: 100%;
+      padding: 10px;
   }
+
 }
 
 @media screen and (max-width:800px) {

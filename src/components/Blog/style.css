@@ -1,0 +1,77 @@
+#fondoblog {
+    /* background-image: url("./windows10.png"); */
+    /* background-size: cover; */
+    background-color: #1a5db7;
+    width: 100%;
+}
+
+
+#mover {
+    padding: 10px;
+    position: absolute;
+    height: 100px;
+}
+h1 {
+    position: relative;
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: 2.5rem;
+}
+h3 {
+    font-size: 2rem;
+    text-align: center;
+}
+p {
+    font-size: 1.1rem;
+    padding: 10px 1px 9px 1px;
+    text-align: left;
+}
+
+ul {
+    font-size: 1.1rem;
+}
+
+.blog {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 19px;
+  box-shadow: 20px -16px #1a2586;
+
+    overflow: scroll;
+}
+
+#botonCopia {
+    font-size: 1.5rem;
+    font-weight: 100;
+    color: #F7F7F7;
+    background: rgb(38,87,193);
+    background: linear-gradient(86deg, rgba(38,87,193,1) 4%, rgba(31,168,207,1) 88%, rgba(252,213,155,1) 100%);
+    
+    text-align: center;
+    width: 100%;
+
+    position: relative;
+    top: 10px;
+    padding: 10px 4px 4px 0 ;
+    
+    border-radius: 10px;
+    /* display: none; */
+    border-color: #FCD59B;
+}
+.codigo {
+    background-color: black;
+    padding: 10px;
+    border-radius: 12px; 
+    overflow: scroll;
+}
+
+.ejemplo{
+    width: 100%;
+    overflow: scroll;
+}
+
+.blog {
+    width: 90%;
+    overflow: scroll;
+}

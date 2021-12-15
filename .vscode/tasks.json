@@ -1,0 +1,34 @@
+{
+	"version": "2.0.0",
+    "type": "shell",
+	"tasks": [
+        {
+            "command": "npm run build",
+            "label": "npm: build",
+            "detail": "react-scripts build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "compilar zip",
+            "command": "cd ./build ; zip -r build.zip *",
+            "presentation": {
+                "reveal": "always"
+            },
+            "dependsOn": [
+                "npm: build"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build y Zip",
+            "command": "cd ./build ; explorer .",
+            "dependsOn": [
+                "compilar zip"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}

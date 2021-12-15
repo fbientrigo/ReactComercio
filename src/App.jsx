@@ -7,6 +7,7 @@ import { commerce } from "./lib/commerce";
 import countapi from "countapi-js";
 //componentes
 import NavBar from "./components/NavBar";
+import Blog from "./components/Blog";
 import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Basket from "./components/Basket";
@@ -14,7 +15,6 @@ import Checkout from "./components/Checkout";
 import ProductView from "./components/ProductView";
 import Servicios from "./components/Servicios";
 import Spinner from "./components/Spinner";
-import AfterFX from "./components/AfterFX";
 //esto es para enviar mails automaticos
 import{ init } from 'emailjs-com';
 init("user_n6ZOPkoUzAa0g3anpbeRJ");
@@ -43,6 +43,7 @@ const App = () => {
     //console.log(products);
     //console.log(category);
     //console.log("---------");
+
   };
 
 
@@ -141,7 +142,6 @@ const App = () => {
         />
         <Switch>
             <Route exact path="/">
-                <AfterFX/>
                 <div> </div>
                 <Products products={products} addProduct={addProduct} category={category} />
                 <Footer />
@@ -168,6 +168,10 @@ const App = () => {
 
             <Route exact path="/product-view/:id">
                 <ProductView addProduct={addProduct} Spinner={Spinner} Footer={Footer} />
+            </Route>
+
+            <Route exact path="/blog">
+                <Blog />
             </Route>
 
         </Switch>
