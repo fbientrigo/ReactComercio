@@ -89,23 +89,23 @@ const Products = ({ products, addProduct, category }) => {
     };
 
     // eslint-disable-line prefer-template
-    let csv = "" 
-    if (products.length > 37) {
-    csv = "sep=; \n id; title ; description; availability; condition; price; link; image_link ; brand \n" ;
-        products.forEach( producto => ( 
-            csv +=  producto.sku + ";" 
-                + producto.name + ";" + "descripcion" + producto.name + ";" 
-                + "in stock" + ";" + "new" + ";" 
-                + producto.price.raw + ";" 
-                + "https://www.todocelularvina.cl/" +`soya` + "/product-view/"+ producto.id + ";"
-                + producto.image.url + ";" 
-                + "TodoCelular"
-                + "\n"
-        ));
+    // let csv = "" 
+    // if (products.length > 37) {
+    // csv = "sep=; \n id; title ; description; availability; condition; price; link; image_link ; brand \n" ;
+    //     products.forEach( producto => ( 
+    //         csv +=  producto.sku + ";" 
+    //             + producto.name + ";" + "descripcion" + producto.name + ";" 
+    //             + "in stock" + ";" + "new" + ";" 
+    //             + producto.price.raw + ";" 
+    //             + "https://www.todocelularvina.cl/" +`soya` + "/product-view/"+ producto.id + ";"
+    //             + producto.image.url + ";" 
+    //             + "TodoCelular"
+    //             + "\n"
+    //     ));
     
-        // console.log("csv");
-        // console.log(csv);
-    }
+    //     // console.log("csv");
+    //     // console.log(csv);
+    // }
 
  
 
@@ -113,6 +113,7 @@ const Products = ({ products, addProduct, category }) => {
       <div>
       <Banner />
       <FormControl fullWidth>
+        <h1 id="categoriasTitulo">Categorias</h1>
         <InputLabel id="demo-simple-select-label" className={classes.inputlabel}></InputLabel>
         <Select className={classes.root}
         labelId="demo-simple-select-label"
@@ -131,7 +132,7 @@ const Products = ({ products, addProduct, category }) => {
         </Select>
 
       </FormControl>
-
+    {/*  // Boton de Excel
       <a 
         href={'data:text/csv;charset=utf-8,' + encodeURI(csv)}
         className="excel download" id="botondescarga"
@@ -141,7 +142,7 @@ const Products = ({ products, addProduct, category }) => {
         >
         Descarga Excel
       </a>
-       
+        */}
       <Container id="products">
         <Grid container spacing={4}>
           {productsF.map((product) => (

@@ -1,6 +1,8 @@
 .afterfxseccion {
     width: 100%;
     /*border-radius: 5px;*/
+    position: relative;
+    display: inline;
 }
 
 .videoAnuncio {
