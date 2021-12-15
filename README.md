@@ -1,4 +1,6 @@
 # Proyecto del Sitio Web
+![image](https://user-images.githubusercontent.com/42480199/146108487-c4e6aa27-019e-4c2d-be14-ec6d817e43b1.png)
+
 ### [Live Site](http://www.todocelularvina.cl/)
 
 ## Organizacion
