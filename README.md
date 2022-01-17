@@ -3,9 +3,8 @@
 
 ### [Live Site](http://www.todocelularvina.cl/)
 
-## Organizacion
-### [Notion](https://floresenhalloween.notion.site/Todo-Celular-Work-7acacfd6aa1842a4a8b148728212a978)
-La pagina de Notion contiene todo lo referente a la organizacion de este proyecto, que falta por realizar y lo que se esta haciendo ahora mismo
+Front end el cual utiliza
+* CommerceJS
+* React
 
-## Por cierto
-Este github no incluye los trabajos artisticos como After Effects y demas, unicamente incluye todo lo referente al sitio web
+CommerceJS hace del Backend para la base de datos, mientras que la pagina se encarga de ser una plantilla para conectarse con este servicio
